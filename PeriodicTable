@@ -27,6 +27,15 @@ public class PeriodicTable {
         secondEle = secondElement; //Assigns external interger to the users score for that particular game
         userAnswer = userInput; //Assings external string to the users recorded name for that partciular game.;
 
-    //Getter
+//Getters
+    public int getFirstEle() {
+        return firstEle;  //Allows outside program to call on this method and return the users recorded first element.
+    }
+    public int getSecondEle() {
+        return secondEle; //Allows outside program to call on this method and return the users recorded second element.
+    }
+    public int getUserAnswer() {
+        return userAnswer; //Allows outside program to call on this method and return the users recorded answer
+    }
     
     //Setter
