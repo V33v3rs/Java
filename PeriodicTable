@@ -1,0 +1,32 @@
+/**
+ * KIT107 Assignment 1
+ *
+ * Periodic Table Printer Interface
+ *
+ * @author J. Dermoudy
+ * @version 21/7/2021
+ * 
+ * This file is UNCOMPLETE
+ .
+ * 
+ */
+import java.util.Scanner;
+
+public class PeriodicTable {
+    
+    
+    
+    ///Initialise Variables
+    private int firstEle, lastEle;
+    private char userAnswer;
+    
+    //Constructor
+    public PeriodicTable ( String playerUserName , int playerScore , int gameIdNumber, Difficulty userDifficulty) {
+      gameId = gameIdNumber; //Assignss external value to the games number
+        score = playerScore; //Assigns external interger to the users score for that particular game
+        userName = playerUserName; //Assings external string to the users recorded name for that partciular game.;
+        difficulty = userDifficulty; //Assigns external value for difficulty (constant) to internal constant parameter.
+    
+    //Getter
+    
+    //Setter
