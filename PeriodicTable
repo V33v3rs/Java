@@ -48,3 +48,12 @@ public class PeriodicTable {
     public void setUsersAnswer(char userInput) {
         userAnswer = userInput; //Allows outside program to assign an integer to the players recorded game number.
 }
+
+     
+       //printGroups
+        
+       //printTable
+      
+      
+     }
+       
