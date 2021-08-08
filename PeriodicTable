@@ -38,4 +38,13 @@ public class PeriodicTable {
         return userAnswer; //Allows outside program to call on this method and return the users recorded answer
     }
     
-    //Setter
+       //Setters
+    public void setFirstEle(int firstElement) {
+        firstEle = firstElement; //Allows outside program to assign a string to the players recorded name.
+    }
+    public void setSecondEle(int secondElement) {
+        secondEle = secondElement; //Allows outside program to assign an integer to the players recorded score.
+    }
+    public void setUsersAnswer(char userInput) {
+        userAnswer = userInput; //Allows outside program to assign an integer to the players recorded game number.
+}
