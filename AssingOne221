@@ -1,0 +1,54 @@
+/**
+ * KIT107 Assignment 1
+ *
+ * Periodic Table Printer
+ *
+ * @author J. Dermoudy
+ * @version 21/7/2021
+ * 
+ * This file is COMPLETE.
+ * 
+ */
+
+import java.util.Scanner;
+
+public class AssigOne221
+{
+    /**
+     * main() -- entry point
+     *
+     * @param args -- command line arguments
+     */
+    public static void main(String args[])
+    {
+        Scanner in = new Scanner(System.in);
+        
+        int firstElement;
+        int lastElement;
+        int userInput;
+        boolean groupValidation;
+        
+        firstElement = in.nextInt();
+        
+        lastElement = in.nextInt();
+        
+        userInput = in.next().charAt(0);
+        
+        if (userInput == 'Y' || userInput == 'y') {
+            groupValidation = true;
+        } else {
+            groupValidation = false;
+        }
+        
+        PeriodicTable p;
+    
+        // create PeriodicTable object
+        p=new PeriodicTable(firstElement, lastElement, groupValidation);
+        
+        System.out.println("\t\t\t\t\t\t\t\t Periodic Table");
+        System.out.println("\t\t\t\t\t\t\t\t ==============");
+        // show (portion of) periodic table
+        p.printTables();
+        p.printGroups();
+    }
+}
