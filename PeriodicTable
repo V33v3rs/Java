@@ -19,17 +19,11 @@ public class PeriodicTable implements PeriodicTableInterface{
     
     
     ///Initialise Variables
-    protected int firstEle;
-    protected int lastEle;
-    protected boolean userAnswer;
-    protected String[][] table;
     
-    //Constructor
-    public PeriodicTable (int firstElement, int lastElement, boolean userInput) {
-        firstEle = firstElement; //Assignss external value to the games number
-        lastEle = lastElement; //Assigns external interger to the users score for that particular game
-        userAnswer = userInput; //Assings external string to the users recorded name for that partciular game.;
-        String table[][]={{"H","1"},{"He","18"},{"Li","1"},{"Be","2"},{"B","13"},{"C","14"},{"N","15"},{"O","16"},{"F","17"},{"Ne","18"},
+    protected int firstEle; //Start of boundary of the range the user selects to view from the table.
+    protected int lastEle; //End of the boundary of the range the user selects to view from the table. 
+    protected boolean userAnswer; //True or false, will allow the program to decide wether or not it will show the user the lan/anth groups.
+    protected final String[][] table = {{"H","1"},{"He","18"},{"Li","1"},{"Be","2"},{"B","13"},{"C","14"},{"N","15"},{"O","16"},{"F","17"},{"Ne","18"},
             {"Na","1"},{"Mg","2"},{"Al","13"},{"Si","14"},{"P","15"},{"S","16"},{"Cl","17"},{"Ar","18"},{"K","1"},{"Ca","2"},
             {"Sc","3"},{"Ti","4"},{"V","5"},{"Cr","6"},{"Mn","7"},{"Fe","8"},{"Co","9"},{"Ni","10"},{"Cu","11"},{"Zn","12"},
             {"Ga","13"},{"Ge","14"},{"As","15"},{"Se","16"},{"Br","17"},{"Kr","18"},{"Rb","1"},{"Sr","2"},{"Y","3"},{"Zr","4"},
@@ -40,45 +34,65 @@ public class PeriodicTable implements PeriodicTableInterface{
             {"Tl","13"},{"Pb","14"},{"Bi","15"},{"Po","16"},{"At","17"},{"Rn","18"},{"Fr","1"},{"Ra","2"},{"Ac","-31"},{"Th","-32"},
             {"Pa","-33"},{"U","-34"},{"Np","-35"},{"Pu","-36"},{"Am","-37"},{"Cm","-38"},{"Bk","-39"},{"Cf","-40"},{"Es","-41"},{"Fm","-42"},
             {"Md","-43"},{"No","-44"},{"Lr","-45"},{"Rf","4"},{"Db","5"},{"Sg","6"},{"Bh","7"},{"Hs","8"},{"Mt","9"},{"Ds","10"},
-            {"Rg","11"},{"Cn","12"},{"Uut","13"},{"Fl","14"},{"Uup","15"},{"Lv","16"},{"Uus","17"},{"Uuo","18"}};
-    }
+            {"Rg","11"},{"Cn","12"},{"Uut","13"},{"Fl","14"},{"Uup","15"},{"Lv","16"},{"Uus","17"},{"Uuo","18"}};  //Periodic table, array of arrays that allows us to access and show specific elements
     
-    //Getters
-    public int getFirstEle() {
-        return firstEle;  //Allows outside program to call on this method and return the users recorded first element.
-    }
-    public int getSecondEle() {
-        return lastEle; //Allows outside program to call on this method and return the users recorded second element.
-    }
-    public boolean getUserAnswer() {
-        return userAnswer; //Allows outside program to call on this method and return the users recorded answer
-    }
-    
-       //Setters
-    public void setFirstEle(int firstElement) {
-        firstEle = firstElement; //Allows outside program to assign a string to the players recorded name.
-    }
-    public void setSecondEle(int secondElement) {
-        lastEle = secondElement; //Allows outside program to assign an integer to the players recorded score.
-    }
-    public void setUsersAnswer(boolean userInput) {
-        userAnswer = userInput; //Allows outside program to assign an integer to the players recorded game number.
-    }
+    //Constructor
+    public PeriodicTable () {
+        Scanner in = new Scanner(System.in);
         
+        int firstElement; //Instance variables - allow the user to enter their own range of 
+        int lastElement; //elements to be shown from the periodic table
+        char userInput; //userInput is used to create a yes or no boolean decision
+        boolean groupValidation; //the groupValidation depends on the userInput (char)
+        
+        System.out.println("Lan/Anth groups? Enter Y for Yes");
+        userInput = in.next().charAt(0); //elicit yes or no via char
+        
+        System.out.println("Please enter the first Element");
+        firstElement = in.nextInt(); //elicit start of range
+        
+        System.out.println("Please enter the second Element");
+        lastElement = in.nextInt(); //elicit end of range
+        
+      
+        
+        if (userInput == 'Y' || userInput == 'y') {
+            groupValidation = true;
+        } else {
+            groupValidation = false;
+        }
+        
+        if (firstElement > 118 || firstElement < 1) { //assigns instance variable to protected variable after checking conditions
+            firstEle = 1;
+        } else {
+            firstEle = firstElement;
+        }
+    
+        if (lastElement <= firstElement || lastElement > 118) { //assigns instance variable to protected variable after checking conditions
+            lastEle = 118;
+        } else {
+            lastEle = lastElement;
+        }
+        
+        userAnswer = groupValidation; //assigns instance variable to protected variable after checking conditions.
+        
+    }
+    
+   
      
 
         
-       //printGroups
-public void printGroups(boolean userAnswer, String[][] table) {
-    if (userAnswer = true) {
+       //printGroups (Called after printGroups)
+    public void printGroups() {
+        if (userAnswer = true) {
         //print the groups
-    } else {
+        } else {
         //do not print the groups
         
-}
+        }
 }
         
-//printTable
-public void printTable(int firstEle, int secondEle, String[][] table) {
-}
+//printTable (Called before printGroups)
+    public void printTables() {
+    }
 }
