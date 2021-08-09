@@ -3,23 +3,22 @@
  *
  * Periodic Table Printer Interface
  *
- * @author J. Dermoudy
- * @version 21/7/2021
+ * @AUTHORS
+ * @version DATE ON SUBMISSION
  * 
  * This file is UNCOMPLETE
- .
+ *
+ * Class file for a periodic table. Used by harness class to create periodic table objects.
+ * Consists of an array of elements (1 - 118), two ints behaving as the range of the table output and
+ * a boolean for boolean conditions. The Class contains callable methods that, when called, will print the selected
+ * range of the periodic table.
  * 
  */
 import java.util.Scanner;
 
 public class PeriodicTable implements PeriodicTableInterface{
     
-    Scanner in = new Scanner(System.in);
-    
-    
-    
-    ///Initialise Variables
-    
+    Scanner in = new Scanner(System.in); //Imported for scanner interface with the user - the constructor needs to gather input from the user.
     protected int firstEle; //Start of boundary of the range the user selects to view from the table.
     protected int lastEle; //End of the boundary of the range the user selects to view from the table. 
     protected boolean userAnswer; //True or false, will allow the program to decide wether or not it will show the user the lan/anth groups.
@@ -34,9 +33,16 @@ public class PeriodicTable implements PeriodicTableInterface{
             {"Tl","13"},{"Pb","14"},{"Bi","15"},{"Po","16"},{"At","17"},{"Rn","18"},{"Fr","1"},{"Ra","2"},{"Ac","-31"},{"Th","-32"},
             {"Pa","-33"},{"U","-34"},{"Np","-35"},{"Pu","-36"},{"Am","-37"},{"Cm","-38"},{"Bk","-39"},{"Cf","-40"},{"Es","-41"},{"Fm","-42"},
             {"Md","-43"},{"No","-44"},{"Lr","-45"},{"Rf","4"},{"Db","5"},{"Sg","6"},{"Bh","7"},{"Hs","8"},{"Mt","9"},{"Ds","10"},
-            {"Rg","11"},{"Cn","12"},{"Uut","13"},{"Fl","14"},{"Uup","15"},{"Lv","16"},{"Uus","17"},{"Uuo","18"}};  //Periodic table, array of arrays that allows us to access and show specific elements
+            {"Rg","11"},{"Cn","12"},{"Uut","13"},{"Fl","14"},{"Uup","15"},{"Lv","16"},{"Uus","17"},{"Uuo","18"}};  //Periodic table, array of arrays that allows the program to access and show specific elements
     
-    //Constructor
+    //Constructor 
+    
+    /**
+     Constructor Method - gathers user input, checks input, assigns input to protected variables
+     @return     (How to explain this)
+     Pre-condition: constructor is called by harness class
+     Post-condition: (Not sure, need to think about this one).
+     */
     public PeriodicTable () {
         Scanner in = new Scanner(System.in);
         
@@ -56,43 +62,130 @@ public class PeriodicTable implements PeriodicTableInterface{
         
       
         
-        if (userInput == 'Y' || userInput == 'y') {
-            groupValidation = true;
-        } else {
-            groupValidation = false;
+        if (userInput == 'Y' || userInput == 'y') { //By checking the users input, a boolean: groupValidation 
+            groupValidation = true;                 //can be set to true or false, depending on the user input. This can later on
+        } else {                                    //be checked in the printGroups method as a true or false condition.
+            groupValidation = false;                //When the user input doesnt match the conditions for a true input, the program will automatically
+            System.out.println("Lan/Anth groups assumed No");//set the boolean to false, and inform the user - this accounts for error's.
         }
         
+        userAnswer = groupValidation;  //Constructer Assignment
+        
+        
         if (firstElement > 118 || firstElement < 1) { //assigns instance variable to protected variable after checking conditions
-            firstEle = 1;
+            firstEle = 1;             //the if-condition filters answers that would not fit the specifics of the periodic table (ie - there is no element zero).
+            System.out.println("first input assumed as #1"); //The else condition will only be met when firstElement is a viable variable, and so the constructor can assign freely.
         } else {
             firstEle = firstElement;
         }
     
         if (lastElement <= firstElement || lastElement > 118) { //assigns instance variable to protected variable after checking conditions
-            lastEle = 118;
+            lastEle = 118;                         //the if-condition acts simmilar to the previous one, it acts as a filter.
+            System.out.println("Second input assumed as #118"); //the else condition will only be met when the users original input for lastElement is eligible.
         } else {
             lastEle = lastElement;
         }
         
-        userAnswer = groupValidation; //assigns instance variable to protected variable after checking conditions.
+        
         
     }
     
    
      
+   
 
-        
-       //printGroups (Called after printGroups)
+    /**
+     PrintGroups Method - what does it do?
+     @param (not sure yet)
+     @return Outputted text, void return
+     Pre-condition:
+     Post-condition:
+     */
+
+    
     public void printGroups() {
+        int column;
         if (userAnswer = true) {
-        //print the groups
-        } else {
-        //do not print the groups
-        
+        System.out.print(userAnswer);
+        System.out.print("\n\n");//separates the groups from the main table
+    
+            while(firstEle<lastEle)//we use firstEle instead of curEle as it hold where the user wanted to start and has been altered
+            {
+                column = Integer.parseInt(table[firstEle][1]);//converts string column to an int
+
+                if(column<-1)//checks if column is negative as if it is, its part of the Lan\Act groups
+                {
+                    System.out.print(firstEle+1 +" " + table[firstEle][0] + "\t");
+                    if(column == -25)//creates a new line when the row finishes
+                    {
+                        System.out.print("\n");
+                    }
+                }
+                firstEle++;
+            }
         }
+ 
+        
+        
 }
         
-//printTable (Called before printGroups)
+
+    
+    /**
+     PrintTables Method - what does it do?
+     @return Outputted text, void return
+     Pre-condition: Periodic Table object initialised & constructed.
+     Post-condition: Elements within array (table) returned as output, formatted.
+     */
     public void printTables() {
+        int column;
+        int curColumn;
+        int curEle;
+        int finalEle;
+        
+        curEle = (firstEle - 1);
+        finalEle = (lastEle - 1);
+        curColumn = 1;
+        
+        if(curEle>56 && curEle<71)//we dont want our table to print these elements yet as we intend to print them later
+        {
+            curEle = 71;
+        }
+        else if(curEle>88 && curEle<103)
+        {
+            curEle = 103;
+        }
+        
+        while(curEle <= finalEle)//table will run until last ele is displayed
+        {
+            column = Integer.parseInt(table[curEle][1]);//converts string column to an int
+
+            while(curColumn < column )//formats/spaces the table for the next element to be printed
+            {
+                System.out.print("\t");
+                curColumn++;
+            }
+            
+
+            System.out.print(curEle+1 +" " + table[curEle][0]);           
+            curEle++;
+            
+
+            if(curColumn == 18)//once the end of the column if reached a new line is created
+            {
+                System.out.print("\n");
+                curColumn = 1;
+            }
+            else if(curEle == 56)//makes the program skip over the Lan/Act groups and is part of the if statement for optimization (to reduces the amount of times this is checked)
+            {
+                curEle = 71;
+            }
+            else if(curEle == 88)
+            {
+                curEle = 103;
+            }
+        }
     }
+    
+    
 }
