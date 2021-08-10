@@ -1,3 +1,4 @@
+
 /**
  * KIT107 Assignment 1
  *
@@ -63,13 +64,15 @@ public class PeriodicTable implements PeriodicTableInterface{
       
         
         if (userInput == 'Y' || userInput == 'y') { //By checking the users input, a boolean: groupValidation 
-            groupValidation = true;                 //can be set to true or false, depending on the user input. This can later on
+            groupValidation = true; //can be set to true or false, depending on the user input. This can later on
         } else {                                    //be checked in the printGroups method as a true or false condition.
-            groupValidation = false;                //When the user input doesnt match the conditions for a true input, the program will automatically
-            System.out.println("Lan/Anth groups assumed No");//set the boolean to false, and inform the user - this accounts for error's.
+            groupValidation = false;  //When the user input doesnt match the conditions for a true input, the program will automatically
+            System.out.println("Lan/Anth groups assumed No");
+            
         }
         
         userAnswer = groupValidation;  //Constructer Assignment
+       
         
         
         if (firstElement > 118 || firstElement < 1) { //assigns instance variable to protected variable after checking conditions
@@ -105,8 +108,9 @@ public class PeriodicTable implements PeriodicTableInterface{
     
     public void printGroups() {
         int column;
-        if (userAnswer = true) {
-        System.out.print(userAnswer);
+        
+        if (userAnswer == true) {
+        
         System.out.print("\n\n");//separates the groups from the main table
     
             while(firstEle<lastEle)//we use firstEle instead of curEle as it hold where the user wanted to start and has been altered
