@@ -11,6 +11,11 @@ import org.apache.hadoop.mapreduce.Reducer;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
+//Part 2 of Assignment 2 (By Henry Veevers)
+//Each unique word is accounted for by sending a mapping of a
+//Constant (key) and file name(value). This ensures reducer
+//Doesnt need to count unique words (or even know them, it can count how many words
+// for each file by counting how many times file name is sent)
 public class PartTwoMain {
 
   public static void main(String[] args) throws Exception {

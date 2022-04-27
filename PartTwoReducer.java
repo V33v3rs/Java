@@ -16,31 +16,35 @@ import org.apache.hadoop.io.IntWritable;
 public class PartTwoReducer
      extends Reducer<Text,Text,Text,Text> {
 
-
+	//Goal of the reducer is to iterate over the aggregation of file names. 
+	//Each file name that comes through the mapper is equal to one unique                       
+	//Word (so file1 sent 5 times means file1 had 5 unique words)
   public void reduce(Text key, Iterable<Text> values,
                      Context context
                      ) throws IOException, InterruptedException {
     
 	  HashMap<Text, Integer> h = new HashMap<Text, Integer>();
-    	for (Text val : values) {
-    		System.out.println("Reducer 1: " + val);
+    	
+	  for (Text val : values) { //For each value (file name)
     		
-    		if(h.containsKey(val) != true) {
-    			h.put(val, 1);
-    			System.out.println("Reducer 2: " + val);
-    		} else {
-    			System.out.println("Reducer 3: " + val + " " + h.get(val)+1);
-    			h.put(val, h.get(val)+1); 
+    		Text f = new Text(val);
+    		//If the current text file is not in the ds
+    		if(h.containsKey(f) != true) {
+    			h.put(f, 1); //Add it and intital int
+    			
+    		} else { //Otherwise increment the int
+    	
+    			h.replace(f, h.get(f)+1); 
     		}
-    		
-    		//context.write(key,  val);
+
     	}
     	
-    	int i = 0;
-    	Text a = new Text();
-    	for(Text t: h.keySet()) {
-    		System.out.println(h.get(t).toString() + t);
-    		
+    	//System.out.println(h.toString());
+    	int i = 0; //Counter
+    	Text a = new Text(); //Variable for output
+    	for(Text t: h.keySet()) { //For each key in hashmap
+    		//System.out.println(h.get(t).toString() + t);
+    //Filter for largest amount of unique words
     		if(h.get(t) > i) {
     			i = h.get(t);
     			a = t;

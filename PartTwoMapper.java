@@ -13,6 +13,10 @@ import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.input.FileSplit;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
+
+//Mapper finds every unique value from each file and sends the file name
+//Once for each unique value (file1 sent 5 times means file1 had 5 unique words)
+//All sent with same key to simplify reducer
 public class PartTwoMapper
      extends Mapper<Object, Text, Text, Text>{
 
@@ -27,13 +31,13 @@ public class PartTwoMapper
 	
 	 
 	 String filename = fileSplit.getPath().getName();
-	 file.set(filename);
+	 file.set(filename); //Get file name from context
 	 while (itr.hasMoreTokens()) {
-		 word.set(itr.nextToken());
+		 word.set(itr.nextToken()); //Iterates
 		 System.out.println(word + " Ouput Mapper");
 		 if(m.containsKey(word) != true) {
 			 m.put(word, word);
-			 System.out.println(word + "Has gone through Mapper");
+			 //System.out.println(word + "Has gone through Mapper");
 			 
 			 context.write(t, file);
 		 }
